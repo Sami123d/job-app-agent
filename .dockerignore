@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+.env
+.git/
+output/*
+!output/.gitkeep
+data/master_profile.json
+data/history.db
+tests/
+.pytest_cache/
