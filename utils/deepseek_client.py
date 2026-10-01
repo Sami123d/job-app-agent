@@ -15,7 +15,10 @@ class DeepSeekClient(LLMClient):
     Wrapper for DeepSeek API (OpenAI-compatible) to handle configuration, generation, and error handling.
     """
 
-    def __init__(self, api_key: str, model_name: str = "deepseek-chat"):
+    provider_label = "DeepSeek"
+    default_base_url = "https://api.deepseek.com"
+
+    def __init__(self, api_key: str, model_name: str = "deepseek-chat", base_url: Optional[str] = None):
         """
         Initialize the DeepSeek client.
 
@@ -28,7 +31,7 @@ class DeepSeekClient(LLMClient):
 
         self.client = OpenAI(
             api_key=api_key,
-            base_url="https://api.deepseek.com"
+            base_url=base_url or self.default_base_url
         )
         self.model_name = model_name
 
@@ -49,7 +52,7 @@ class DeepSeekClient(LLMClient):
             Generated text string
         """
         try:
-            print(f"🤖 Calling DeepSeek ({self.model_name})...")
+            print(f"🤖 Calling {self.provider_label} ({self.model_name})...")
             temperature = config.get("temperature", 0.7) if config else 0.7
 
             messages = []
@@ -69,5 +72,5 @@ class DeepSeekClient(LLMClient):
             print("⚠️  Rate limit exceeded. Retrying...")
             raise
         except Exception as e:
-            print(f"❌ DeepSeek API Error: {e}")
+            print(f"❌ {self.provider_label} API Error: {e}")
             raise
