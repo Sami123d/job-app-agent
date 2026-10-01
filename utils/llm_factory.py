@@ -42,7 +42,7 @@ def create_llm_client(provider: str = None) -> LLMClient:
         api_key = os.getenv("GEMINI_API_KEY") or os.getenv("GOOGLE_API_KEY")
         if not api_key:
             raise ValueError("GEMINI_API_KEY (or GOOGLE_API_KEY) not found in environment variables")
-        model = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+        model = os.getenv("GEMINI_MODEL", "gemini-flash-latest")
         if provider == "gemini-sdk":
             # Legacy path through the google-generativeai SDK
             return GeminiClient(api_key=api_key, model_name=model)
