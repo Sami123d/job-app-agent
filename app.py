@@ -45,6 +45,18 @@ cv_customizer = None
 cover_letter_generator = None
 history_store = HistoryStore()
 
+# Public demo mode: a shared, fictional profile; profile edits, LinkedIn
+# import (which can read server paths / scrape) and history deletion are off.
+DEMO_MODE = os.getenv("DEMO_MODE", "").strip().lower() in ("1", "true", "yes")
+
+
+def _demo_blocked():
+    return jsonify({
+        'success': False,
+        'error': 'This action is disabled in the public demo.'
+    }), 403
+
+
 def initialize_components():
     """Initialize all AI components."""
     global client, builder, match_calculator, job_analyzer, cv_customizer, cover_letter_generator
@@ -148,6 +160,8 @@ def get_profile():
 @app.route('/api/profile', methods=['POST'])
 def update_profile():
     """Update profile from web interface."""
+    if DEMO_MODE:
+        return _demo_blocked()
     try:
         data = request.json
         profile = data.get('profile')
@@ -174,6 +188,8 @@ def update_profile():
 @app.route('/api/linkedin/import', methods=['POST'])
 def import_linkedin():
     """Import profile from LinkedIn export or URL."""
+    if DEMO_MODE:
+        return _demo_blocked()
     try:
         data = request.json
         export_path = data.get('export_path')
@@ -331,6 +347,8 @@ def get_history_item(application_id):
 @app.route('/api/history/<int:application_id>', methods=['DELETE'])
 def delete_history_item(application_id):
     """Delete a past application record."""
+    if DEMO_MODE:
+        return _demo_blocked()
     try:
         deleted = history_store.delete_application(application_id)
         if not deleted:
@@ -343,11 +361,12 @@ def delete_history_item(application_id):
 def download_file(filename):
     """Download generated files."""
     try:
-        # Security: only allow files from output directory
-        if not filename.startswith('output/'):
+        # Security: only allow files from the output directory (resolve the
+        # path first so "output/../app.py" style traversal is rejected)
+        output_dir = os.path.realpath("output")
+        file_path = os.path.realpath(filename)
+        if not filename.startswith('output/') or os.path.commonpath([output_dir, file_path]) != output_dir:
             return jsonify({'error': 'Invalid file path'}), 403
-        
-        file_path = filename
         if not os.path.exists(file_path):
             return jsonify({'error': 'File not found'}), 404
         
