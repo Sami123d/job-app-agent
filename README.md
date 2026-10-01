@@ -1,4 +1,4 @@
-# Job Application Agent (Extended)
+# Job Application Agent 
 
 > A multi-agent AI system that reads a job description and produces a tailored, ATS-optimized CV and cover letter.
 
