@@ -4,7 +4,7 @@
 
 [![CI](https://github.com/Sami123d/job-app-agent-extended/actions/workflows/ci.yml/badge.svg)](https://github.com/Sami123d/job-app-agent-extended/actions/workflows/ci.yml)
 
-This project is a modified, extended version of [**AI-Powered Job Application Agent**](https://github.com/Ismail-2001/AI-Job-Application-Agent) by **Ismail Sajid** ([@Ismail-2001](https://github.com/Ismail-2001)), used and redistributed here under the terms of its MIT License. The original author's copyright notice is kept in [LICENSE](LICENSE), and a second line covers the modifications made here. Nothing in this credit section should be read as this repository's own design, prompts or architecture. See [What Was Changed](#what-was-changed-vs-the-original) below for exactly what is new here.
+This project is a modified, extended version of [**AI-Powered Job Application Agent**](https://github.com/Ismail-2001/AI-Job-Application-Agent) by **Sami Ahmed**, used and redistributed here under the terms of its MIT License. The original author's copyright notice is kept in [LICENSE](LICENSE), and a second line covers the modifications made here. Nothing in this credit section should be read as this repository's own design, prompts or architecture. See [What Was Changed](#what-was-changed-vs-the-original) below for exactly what is new here.
 
 **The maintainer of this repository did not create the original project.** This is a derivative work. The base multi-agent architecture, prompts, and web/CLI interface are Ismail Sajid's. The items listed below were added on top of that base.
 
@@ -64,7 +64,7 @@ The original came with ad hoc manual scripts (`test_system.py`, `test_api.py`) t
 
 ## My contributions
 
-The extension work was imported as **one squashed commit** ([`5eb2dc5`](https://github.com/Sami123d/job-app-agent-extended/commit/5eb2dc5a53986c785d80f00d8a66b1e4c44f305f)), so there is no separate commit for each change. The table links to the files that implement each change.
+The extension work as **one squashed commit** ([`5eb2dc5`](https://github.com/Sami123d/job-app-agent-extended/commit/5eb2dc5a53986c785d80f00d8a66b1e4c44f305f)), so there is no separate commit for each change. The table links to the files that implement each change.
 
 | Change | Files | Commit |
 |---|---|---|
@@ -243,5 +243,4 @@ MIT License. See [LICENSE](LICENSE). Copyright (c) Ismail Sajid for the original
 
 ## Attribution
 
-- **Original project and architecture:** [Ismail Sajid](https://github.com/Ismail-2001), [AI-Job-Application-Agent](https://github.com/Ismail-2001/AI-Job-Application-Agent)
-- **Extended by:** [Sami123d](https://github.com/Sami123d)
+- **Original project and architecture:** [Sami123d](https://github.com/Sami123d)
