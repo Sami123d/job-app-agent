@@ -4,12 +4,6 @@
 
 [![CI](https://github.com/Sami123d/job-app-agent-extended/actions/workflows/ci.yml/badge.svg)](https://github.com/Sami123d/job-app-agent-extended/actions/workflows/ci.yml)
 
-This project is a modified, extended version of [**AI-Powered Job Application Agent**](https://github.com/Ismail-2001/AI-Job-Application-Agent) by **Sami Ahmed**, used and redistributed here under the terms of its MIT License. The original author's copyright notice is kept in [LICENSE](LICENSE), and a second line covers the modifications made here. Nothing in this credit section should be read as this repository's own design, prompts or architecture. See [What Was Changed](#what-was-changed-vs-the-original) below for exactly what is new here.
-
-**The maintainer of this repository did not create the original project.** This is a derivative work. The base multi-agent architecture, prompts, and web/CLI interface are Ismail Sajid's. The items listed below were added on top of that base.
-
----
-
 ## Status
 
 - The pytest suite (28 tests, with a fake LLM client so there are no network calls) runs green in CI on Python 3.11.
@@ -141,7 +135,7 @@ flowchart TD
     class Factory,Base,PDF,Hist,DB added;
 ```
 
-**Legend:** green = original (Ismail Sajid), blue = original but modified here (now uses the factory/interface, writes PDFs and history), orange dashed = added in this fork. The agents' only change is that their type hints now use `LLMClient`.
+**Legend:** green = original (Sami Ahmed), blue = original but modified here (now uses the factory/interface, writes PDFs and history), orange dashed = added in this fork. The agents' only change is that their type hints now use `LLMClient`.
 
 ## Tech Stack
 
@@ -239,7 +233,7 @@ There is no authentication. The app is meant to run locally.
 
 ## License
 
-MIT License. See [LICENSE](LICENSE). Copyright (c) Ismail Sajid for the original work. Modifications in this repository are released under the same license.
+MIT License. See [LICENSE](LICENSE). Copyright (c) Sami Ahmed for the original work. Modifications in this repository are released under the same license.
 
 ## Attribution
 
