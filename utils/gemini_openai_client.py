@@ -14,7 +14,7 @@ class GeminiOpenAIClient(DeepSeekClient):
     provider_label = "Gemini"
     default_base_url = GEMINI_OPENAI_BASE_URL
 
-    def __init__(self, api_key: str, model_name: str = "gemini-2.5-flash"):
+    def __init__(self, api_key: str, model_name: str = "gemini-flash-latest"):
         if not api_key:
             raise ValueError("API key is required for GeminiOpenAIClient")
         super().__init__(api_key=api_key, model_name=model_name)
