@@ -1,0 +1,69 @@
+{
+  "personal_info": {
+    "name": "Jordan Lee",
+    "email": "jordan.lee@example.com",
+    "phone": "+1 555-0142",
+    "linkedin": "https://www.linkedin.com/in/example-jordan-lee",
+    "location": "Austin, TX"
+  },
+  "summary": "Fictional demo profile. Full-stack engineer with 6 years of experience building SaaS products in Python and React. Has shipped customer-facing features end to end, from API design to deployment, and enjoys mentoring junior developers.",
+  "skills": {
+    "Languages": ["Python", "TypeScript", "JavaScript", "SQL"],
+    "Frameworks": ["FastAPI", "Django", "React", "Next.js"],
+    "Tools": ["AWS", "Docker", "PostgreSQL", "Redis", "GitHub Actions"],
+    "Soft Skills": ["Communication", "Mentoring", "Ownership"]
+  },
+  "experience": [
+    {
+      "company": "Brightline Analytics (fictional)",
+      "title": "Senior Software Engineer",
+      "dates": "2022 - Present",
+      "location": "Austin, TX",
+      "responsibilities": [
+        "Led a team of 4 engineers rebuilding the reporting API in FastAPI, cutting p95 latency from 1.8s to 350ms",
+        "Designed a multi-tenant PostgreSQL schema that supported growth from 200 to 1,500 business customers",
+        "Introduced CI/CD with GitHub Actions and Docker, reducing release time from a day to under 30 minutes"
+      ]
+    },
+    {
+      "company": "Northwind Labs (fictional)",
+      "title": "Software Engineer",
+      "dates": "2019 - 2022",
+      "location": "Remote",
+      "responsibilities": [
+        "Built React dashboards used daily by 3,000+ operations staff",
+        "Integrated Stripe billing and webhooks, removing a manual invoicing process",
+        "Wrote automated tests that raised backend coverage from 40% to 85%"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "school": "University of Texas at Austin",
+      "degree": "B.S. Computer Science",
+      "dates": "2015 - 2019",
+      "gpa": "3.7/4.0",
+      "honors": ["Dean's List"]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Open-source rate limiter",
+      "description": "Token-bucket rate limiting middleware for FastAPI with Redis backing, used in several internal services.",
+      "technologies": ["Python", "FastAPI", "Redis"],
+      "url": "https://github.com/example/rate-limiter"
+    }
+  ],
+  "certifications": [
+    {
+      "name": "AWS Certified Developer – Associate",
+      "issuer": "Amazon Web Services",
+      "date": "2023",
+      "expiry": "2026"
+    }
+  ],
+  "languages": [
+    {"language": "English", "proficiency": "Native"},
+    {"language": "Spanish", "proficiency": "Conversational"}
+  ]
+}
