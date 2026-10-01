@@ -22,17 +22,17 @@ def test_create_llm_client_selects_gemini(monkeypatch):
 
     assert isinstance(client, GeminiOpenAIClient)
     assert str(client.client.base_url).rstrip("/") == GEMINI_OPENAI_BASE_URL.rstrip("/")
-    assert client.model_name == "gemini-2.5-flash"
+    assert client.model_name == "gemini-flash-latest"
 
 
 def test_gemini_accepts_gemini_api_key_and_model_override(monkeypatch):
     monkeypatch.delenv("GOOGLE_API_KEY", raising=False)
     monkeypatch.setenv("GEMINI_API_KEY", "fake-key")
-    monkeypatch.setenv("GEMINI_MODEL", "gemini-2.5-flash-lite")
+    monkeypatch.setenv("GEMINI_MODEL", "gemini-flash-lite-latest")
 
     client = create_llm_client("gemini")
 
-    assert client.model_name == "gemini-2.5-flash-lite"
+    assert client.model_name == "gemini-flash-lite-latest"
 
 
 def test_create_llm_client_selects_legacy_gemini_sdk(monkeypatch):
