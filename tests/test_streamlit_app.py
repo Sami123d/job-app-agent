@@ -27,9 +27,10 @@ def test_streamlit_demo_generates_documents(monkeypatch):
         at = st_testing.AppTest.from_file(str(ROOT / "streamlit_app.py"), default_timeout=60)
         at.run()
         at.button[0].click().run()   # "Use a sample job description"
-        at.button[1].click().run()   # "Analyze & generate"
+        at.button[1].click().run()   # "Analyze & generate"  →
 
     assert not at.exception
     assert not at.error
     assert any("FutureTech AI" in s.value for s in at.subheader)
-    assert [m.label for m in at.metric][0] == "Overall match"
+    assert any("Overall match" in m.value for m in at.markdown)
+    assert len(at.get("download_button")) == 4
