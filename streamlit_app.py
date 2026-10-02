@@ -15,7 +15,15 @@ import re
 import tempfile
 from pathlib import Path
 
+import sys
+
 import streamlit as st
+
+# Make agent progress prints show up in the Streamlit Cloud logs right away.
+try:
+    sys.stdout.reconfigure(line_buffering=True)
+except Exception:
+    pass
 
 # Copy secrets into the environment before the LLM factory reads them.
 for _k in ("GEMINI_API_KEY", "GOOGLE_API_KEY", "DEEPSEEK_API_KEY", "LLM_PROVIDER",
