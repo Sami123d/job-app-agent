@@ -53,3 +53,22 @@ def test_create_llm_client_raises_when_key_missing(monkeypatch):
 def test_create_llm_client_raises_on_unsupported_provider():
     with pytest.raises(ValueError, match="Unsupported LLM_PROVIDER"):
         create_llm_client("openai")
+
+
+def test_gemini_client_falls_back_to_lite_model(monkeypatch):
+    from utils.deepseek_client import DeepSeekClient
+    monkeypatch.setenv("GEMINI_API_KEY", "fake-key")
+    monkeypatch.delenv("GEMINI_MODEL", raising=False)
+    client = create_llm_client("gemini")
+    calls = []
+
+    def fake_generate(self, prompt, system_instruction="", config=None):
+        calls.append(self.model_name)
+        if self.model_name == "gemini-flash-latest":
+            raise RuntimeError("503 high demand")
+        return "ok"
+
+    monkeypatch.setattr(DeepSeekClient, "generate_content", fake_generate)
+    assert client.generate_content("hi") == "ok"
+    assert calls == ["gemini-flash-latest", "gemini-flash-lite-latest"]
+    assert client.model_name == "gemini-flash-latest"
