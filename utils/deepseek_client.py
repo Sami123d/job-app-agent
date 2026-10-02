@@ -3,6 +3,7 @@ DeepSeek API Client Wrapper
 Role: Handle all interactions with DeepSeek API via OpenAI client with robust error handling.
 """
 
+import os
 from typing import Dict, Any, Optional
 from openai import OpenAI, RateLimitError
 from tenacity import retry, stop_after_attempt, wait_exponential
@@ -29,15 +30,21 @@ class DeepSeekClient(LLMClient):
         if not api_key:
             raise ValueError("API key is required for DeepSeekClient")
 
+        # Bound each request: the SDK default (600s timeout + 2 retries) can
+        # leave the UI hanging for minutes when the provider is overloaded.
+        # Retries are handled by tenacity below.
         self.client = OpenAI(
             api_key=api_key,
-            base_url=base_url or self.default_base_url
+            base_url=base_url or self.default_base_url,
+            timeout=float(os.getenv("LLM_TIMEOUT", "60")),
+            max_retries=0,
         )
         self.model_name = model_name
 
     @retry(
-        stop=stop_after_attempt(3),
-        wait=wait_exponential(multiplier=1, min=2, max=10)
+        stop=stop_after_attempt(2),
+        wait=wait_exponential(multiplier=1, min=2, max=6),
+        reraise=True,
     )
     def generate_content(self, prompt: str, system_instruction: str = "", config: Optional[Dict[str, Any]] = None) -> str:
         """
